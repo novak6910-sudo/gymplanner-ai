@@ -30,9 +30,6 @@ const Index = () => {
   const [userWeight, setUserWeight] = useState(70);
   const [downloadsLeft, setDownloadsLeft] = useState(2);
 
-  if (loading) return null;
-  if (user) return <Navigate to="/dashboard" replace />;
-
   const handleGenerate = useCallback((profile: UserProfile) => {
     setUserWeight(profile.weight);
     const newPlan = generateWorkoutPlan(profile);
@@ -118,6 +115,9 @@ const Index = () => {
       document.getElementById("planner")?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   }, []);
+
+  if (loading) return null;
+  if (user) return <Navigate to="/dashboard" replace />;
 
   return (
     <div className="min-h-screen bg-background">
